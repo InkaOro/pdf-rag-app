@@ -50,4 +50,3 @@ final_chain = (
 
 FINAL_CHAIN_INVOKE = final_chain.invoke({"question":"What is the theme of the auctions?"})
 
-print(FINAL_CHAIN_INVOKE)
