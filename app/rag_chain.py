@@ -21,6 +21,12 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.output_parsers import StrOutputParser
 from langchain_community.vectorstores.pgvector import PGVector
 from langchain_core.runnables import RunnableParallel
+from langchain_community.chat_models import ChatOllama
+
+# Set environment variables
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_PROJECT"] = "RAG_Chain_Example"
+
 
 vector_store = PGVector(
     collection_name=PG_COLLECTION_NAME,
@@ -36,7 +42,8 @@ Question: {question}
 
 ANSWER_PROMPT=ChatPromptTemplate.from_template(template)
 
-llm = ChatOpenAI(temperature=0, model="gpt-4-1106-preview", streaming=True)
+llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo-0125", streaming=True)
+# llm = ChatOllama(model="llama2")
 
 class RagInput(TypedDict):
     question: str
